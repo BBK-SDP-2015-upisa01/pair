@@ -1,6 +1,7 @@
 # pair
-Connect Four paired assignment
+# Connect Four paired assignment
 
-David Thompson & Ugo Pisa
 
-dthomp14 & upisa01
+* David Thompson (dthomp14)
+* Ugo Pisa (upisa01)
+
