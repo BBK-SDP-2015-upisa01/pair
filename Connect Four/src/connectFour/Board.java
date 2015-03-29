@@ -82,10 +82,10 @@ public class Board {
      * Throw an IllegalArgumentException if move's column is full on this Board.
      */
     public void makeMove(Move move) {
-    	
-    	if(getTile(0,move.getColumn()) != null){
-    		throw new IllegalArgumentException("This column is full! Try again");
-    	}
+    	// if there is an empty move, there are no more possible moves
+    	// and the game is over
+    	if(getPossibleMoves(move.getPlayer()) == new Move[] {})
+            throw new UnsupportedOperationException("Illegal Move: The game is over.");
     	
     	// find the first empty spot in the selected column by looping from bottom to top of the board
     	// if it is empty then and fill it with the player corresponding to the current move.
@@ -96,6 +96,8 @@ public class Board {
                 return;
             }
         }
+        // If there isn't a slot, the column is full
+        throw new UnsupportedOperationException("Illegal Move: Column is full");
     }
 
     /**
