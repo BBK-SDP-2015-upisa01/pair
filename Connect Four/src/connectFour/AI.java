@@ -30,8 +30,21 @@ public class AI implements Solver {
      */
     @Override
     public Move[] getMoves(Board b) {
-    	//  TODO
-    	return null;
+    	
+        State state = new State(player,b,null);
+        createGameTree(state,depth);
+        minimax(state);
+        
+        List<Move> moveList = new ArrayList<>();
+        for(State s : state.getChildren()){
+            if(s.getValue()==state.getValue()){
+                moveList.add(s.getLastMove());
+            }
+        }
+
+        Move[] result = {};
+
+        return moveList.toArray(result);
         
     }
 
@@ -75,7 +88,38 @@ public class AI implements Solver {
      * tree rooted at s, indicating how desirable that java.State is to this player.
      */
     public void minimax(State s) {
-    	//  TODO
+    	
+    	// at a leaf node
+        if(s.getChildren().length == 0) { 
+            s.setValue(evaluateBoard(s.getBoard()));
+        } else { 
+        	int val;
+        	// if we are playing then we need to determine the maximum value of the child states
+            if(s.getPlayer() == player){
+            	// find the max value from the children states
+            	val = Integer.MIN_VALUE;
+            	for(State children : s.getChildren()){
+                    minimax(children);      
+                    if (children.getValue() > val)
+                    	val = children.getValue();
+                }
+            // if we aren't playing then we need to determine the minimum value of the child states
+            } else {
+            	// find the min value from the children states
+            	val = Integer.MAX_VALUE;
+            	for(State children : s.getChildren()){
+                    minimax(children);      
+                    if (children.getValue() < val)
+                    	val = children.getValue();
+            	}
+            	// allocate value to parent node 
+            	
+            	
+            	
+            	
+            }
+            s.setValue(val);
+        }
     }
 
     /**
