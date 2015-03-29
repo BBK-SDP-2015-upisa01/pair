@@ -33,10 +33,11 @@ public class GUI extends JFrame {
          * as parameters, with the a depth used to recurse when searching the
          * game space. */
         //Solver p1= new AI(Player.RED, 6);
+        Solver p2= new AI(Player.YELLOW, 6);
         //Solver p2= new Human(Player.YELLOW);
-        Solver p1 = new Dummy(Player.RED);
-        Solver p2 = new Dummy(Player.YELLOW);
-        //Solver p1 = new Human(Player.RED);
+        //Solver p1 = new Dummy(Player.RED);
+        //Solver p2 = new Dummy(Player.YELLOW);
+        Solver p1 = new Human(Player.RED);
         //Solver p2 = new Dummy(Player.YELLOW);
 
         /* --------------------------------- Do not change below here. --------------------------------- */

@@ -83,6 +83,10 @@ public class Board {
      */
     public void makeMove(Move move) {
     	
+    	if(getTile(0,move.getColumn()) != null){
+    		throw new IllegalArgumentException("This column is full! Try again");
+    	}
+    	
     	// find the first empty spot in the selected column by looping from bottom to top of the board
     	// if it is empty then and fill it with the player corresponding to the current move.
         int column = move.getColumn();
@@ -108,7 +112,7 @@ public class Board {
 
         List<Move> moveList = new ArrayList<>();
         
-        // If hasConnectFour() isn't equal to null, that means the game is over and there are no more possible moves
+        // if hasConnectFour() isn't equal to null, that means the game is over and there are no more possible moves
         if(hasConnectFour() == null) {
         	// loop through the top of each column to see if it's empty
         	// if it returns null, it's empty and means there is a possible move there.
@@ -117,11 +121,16 @@ public class Board {
         			moveList.add(new Move(p, x));
         		}
         	}
+        
+        	// had to convert to static array to return.
+        	Move[] arrayType ={};
+        	Move[] newList = moveList.toArray(arrayType);
+        	return newList;
+        	
+        } else{
+        	// if the game is over there are no more possible moves, return an empty list
+        	return new Move[]{};
         }
-        // had to convert to static array to return.
-        Move[] arrayType ={};
-        Move[] newList = moveList.toArray(arrayType);
-        return newList;
     }
 
     /**

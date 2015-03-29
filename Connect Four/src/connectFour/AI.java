@@ -1,7 +1,7 @@
 package connectFour;
 
-
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * An instance represents a Solver that intelligently determines
@@ -30,8 +30,9 @@ public class AI implements Solver {
      */
     @Override
     public Move[] getMoves(Board b) {
-        // TODO
-        return null;
+    	//  TODO
+    	return null;
+        
     }
 
     /**
@@ -48,8 +49,17 @@ public class AI implements Solver {
     public static void createGameTree(State s, int d) {
         // Note: This method must be recursive, recurse on d,
         // which should get smaller with each recursive call
+    	
+    	if(d == 0){
+    		return;
+    	}else{
+            s.initializeChildren();
+            for(State child : s.getChildren()){
+            	// recursion
+                createGameTree(child,d-1);
+            }
 
-        // TODO
+        }
     }
 
     /**
@@ -65,7 +75,7 @@ public class AI implements Solver {
      * tree rooted at s, indicating how desirable that java.State is to this player.
      */
     public void minimax(State s) {
-        // TODO
+    	//  TODO
     }
 
     /**
